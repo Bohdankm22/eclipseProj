@@ -8,14 +8,8 @@ public class LorenceLab {
 		height = 182;
 		firstName = "Bohdan";
 		lastName = "Sharipov";
-		boolean isMan = true;
-		double koef = isMan ? 4 : 2.5;
-		weight = calculateLorence(height, koef);
+		weight = (int) ((height - 100) - (height - 150) / 4);;
 		System.out.println("The ideal weight for you is " + weight);
-	}
-	
-	public static int calculateLorence(int height, double koef) {
-		return (int) ((height - 100) - (height - 150) / koef);
 	}
 
 }
