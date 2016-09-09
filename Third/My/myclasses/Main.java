@@ -3,11 +3,13 @@ package myclasses;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("7 + 9 = " + (7 + 9));
-		System.out.println("45 - 12 = " + (45 - 12));
-		System.out.println("11 * 4 = " + 11 * 4);
-		System.out.println("23 / 5 = " + 23 / 5);
-		System.out.println("23 % 5 = " + 23 % 5);
+		System.out.println((int)(5.2));
+		System.out.println((double) 32);
+		
+		System.out.println("(int) ('9') = " + (int) ('9'));
+		System.out.println("(int) ('A') = " + (int) ('A'));
+		System.out.println("(char) (66) = " + (char) (66));
+		System.out.println("(char) (66) = " + (char) (66));
 	}
 
 }
