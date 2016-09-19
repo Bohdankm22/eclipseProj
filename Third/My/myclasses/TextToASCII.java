@@ -3,8 +3,6 @@ import javax.swing.JOptionPane;
 
 public class TextToASCII {
 	
-	//private static final String TEXT = "Software Engineering";
-	
 	private static final String TEXT = JOptionPane.showInputDialog("Please input a text:");
 
 	public static void main(String[] args) {
