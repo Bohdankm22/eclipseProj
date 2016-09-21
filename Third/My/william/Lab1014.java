@@ -15,7 +15,6 @@ public class Lab1014 {
 	          x--;
 	        }
 	        JOptionPane.showConfirmDialog(null, "The factorial of is "+f,"Factorial",JOptionPane.INFORMATION_MESSAGE);
-			System.exit(0);
 			System.out.println("The game is restarted");
 			a=JOptionPane.showInputDialog("Play again?");
 			while(!(((a.equals("Y"))||(a.equals("y")))||((a.equals("N"))||(a.equals("n")))))
