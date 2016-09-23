@@ -20,6 +20,7 @@ public class FactorialLab14 {
 		}
 	}
 	
+	// Method calculates number factorial using recursion
 	private static long calcFact(int numb) {
 		return numb == 1 ? 1 : numb * calcFact(numb -1);
 	}
