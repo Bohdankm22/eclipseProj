@@ -12,7 +12,7 @@ public class Lab1016 {
 	          i = i + x%10;
 	          x = x/10;
 	      }
-	      JOptionPane.showConfirmDialog(null, "Reverse of the number is "+i,"Reverse",JOptionPane.INFORMATION_MESSAGE);
+	      JOptionPane.showMessageDialog(null, "Reverse of the number is "+i,"Reverse",JOptionPane.INFORMATION_MESSAGE);
 			System.exit(0);
 	   }
 }
