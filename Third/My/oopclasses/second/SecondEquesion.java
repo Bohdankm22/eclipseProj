@@ -1,12 +1,12 @@
 package oopclasses.second;
 
-public class QuadrEqWithMethods {
+public class SecondEquesion {
 	
 	private double a;
 	private double b;
 	private double c;
 	
-	public QuadrEqWithMethods(double a, double b, double c) {
+	public SecondEquesion(double a, double b, double c) {
 		this.a = a;
 		this.b = b;
 		this.c = c;
