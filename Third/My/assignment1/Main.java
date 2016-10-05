@@ -1,11 +1,13 @@
-package bohdan.assignment1;
+package assignment1;
+
+import java.awt.Toolkit;
 
 import javax.swing.JOptionPane;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Siren siren = new Siren(userNumber("beeb koeficient"), userNumber("silence koeficient"));
+		Siren siren = new Siren(userNumberOfIterations("beeb number"), userNumberOfIterations("silence mumber"));
 		int k = userNumberOfIterations("number of iterations");
 		siren.fireSiren(k);
 	}

@@ -1,12 +1,15 @@
-package bohdan.assignment1;
+package assignment1;
+
+import java.awt.Toolkit;
 
 public class Siren {
-	private double beepKoef;
-	private double silenceKoef;
+	private int beepKoef;
+	private int silenceKoef;
 	private int beebSeconds = 1;
 	private int silenceSeconds = 1;
 	
-	public Siren(double beepKoef, double silenceKoef) {
+	
+	public Siren(int beepKoef, int silenceKoef) {
 		this.beepKoef = beepKoef;
 		this.silenceKoef = silenceKoef;
 	}
@@ -22,9 +25,14 @@ public class Siren {
 	public void fireSiren(int numberOfIterations) {
 		System.out.println("Start:");
 		for (int i = 0; i < numberOfIterations; i++) {
-			System.out.println("Beeb start.");
-			sleepSeconds(this.beebSeconds * getBeepKoef());
-			System.out.println("Beeb end.");
+			for (int j = 0; j < beepKoef; j++) {
+				Toolkit.getDefaultToolkit().beep();
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					
+				}
+			}
 			System.out.println("Silence start.");
 			sleepSeconds(this.silenceSeconds * getSilenceKoef());
 			System.out.println("Silence end!");
