@@ -25,6 +25,13 @@ public class SubstitutionCode {
 		return sb.toString();
 	}
 	
+	private static String decodeString(String input) {
+		StringBuilder sb = new StringBuilder();
+		CharBuffer.wrap(input.toUpperCase().toCharArray()).chars().mapToObj(ch -> 
+			(char)ch).forEach(ch -> sb.append(ChipherKey.valueOf(Character.toString(ch)).value));
+		return sb.toString();
+	}
+	
 	public String getEncoded() {
 		return this.encoded;
 	}
