@@ -28,7 +28,7 @@ public class UseMyCar {
 
         //Create a third Car which name “toyCar” is given by default, 
         //and that doesn't move
-		Car myThirdCar = new Car();
+		Car myThirdCar = new Car("Mersedes");
 
         //Create the first Driver that will drive the first car
 		Driver firstDriver = new Driver();
@@ -57,15 +57,17 @@ public class UseMyCar {
 
 		//Let's race for 30 seconds
 		int i = 1;
-		while (i < 30)
+		while (i < 60)
 		{
 			//if myFirstCar speedIncreaseStep is positive (Acceleration)
 			if (myFirstCar.getSpeedIncreaseStep() > 0){
-        	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " >>> : " +myFirstCar.getCurrentSpeed() +"\t\t" );
+//        	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " >>> : " +myFirstCar.getCurrentSpeed() +"\t\t" );
+               System.out.printf("%3d :: %8s >>> : %3d", myFirstCar.getSpeedIncreaseStep(), myFirstCar.getCarName(), myFirstCar.getCurrentSpeed());
 			}
 			//if myFirstCar current speedIncreaseStep is negative (Deceleration - Slow down)
 			else if (myFirstCar.getSpeedIncreaseStep() < 0){
-        	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " <<< : " +myFirstCar.getCurrentSpeed() +"\t\t");
+//        	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " <<< : " +myFirstCar.getCurrentSpeed() +"\t\t");
+        	   System.out.printf("%3d :: %8s <<< : %3d", myFirstCar.getSpeedIncreaseStep(), myFirstCar.getCarName(), myFirstCar.getCurrentSpeed());
 			}
 			//if myFirstCar speedIncreaseStep speed is zero (Constant speed)
 			else{ 
@@ -77,23 +79,29 @@ public class UseMyCar {
     		   myFirstCar.setSpeedIncreaseStep(gas);
     		   //Get this speed when the driver punches on the accelerator pedal 
                firstDriver.punchOnAccelorPedal(myFirstCar, myFirstCar.getSpeedIncreaseStep());
-               System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " +++ : " +myFirstCar.getCurrentSpeed() +"\t\t");
+               System.out.printf("%3d :: %8s +++ : %3d", myFirstCar.getSpeedIncreaseStep(), myFirstCar.getCarName(), myFirstCar.getCurrentSpeed());
+//               System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " +++ : " +myFirstCar.getCurrentSpeed());
                //if the number of times zeroCounter has passed to zero is multiple of 3
                if(myFirstCar.getZeroCounter() % 3 == 0){
             	   //prepare even more gas
             	   moreGas=createInjection(myFirstCar.getZeroCounter(), 0);
             	   //Automatically increase the speed related to the amount of gas alloted
             	   myFirstCar.automaticAccelerationIncrease(gas);
-            	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " *** : " +myFirstCar.getCurrentSpeed() +"\t\t");
+            	   System.out.printf("%3d :: %8s *** : %3d", myFirstCar.getSpeedIncreaseStep(), myFirstCar.getCarName(), myFirstCar.getCurrentSpeed());
+//            	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " *** : " +myFirstCar.getCurrentSpeed());
                }
+               else
+   		   		System.out.printf("%25s", "");
     	   }
 			//if mySecondCar speedIncreaseStep is positive (Acceleration)
        	   if (mySecondCar.getSpeedIncreaseStep() > 0){
-        	   System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: "  +mySecondCar.getCarName() + " >>> : " +mySecondCar.getCurrentSpeed() );
+        	   System.out.printf("%3d :: %8s >>> : %3d", mySecondCar.getSpeedIncreaseStep(), mySecondCar.getCarName(), mySecondCar.getCurrentSpeed());
+//        	   System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: "  +mySecondCar.getCarName() + " >>> : " +mySecondCar.getCurrentSpeed() );
         	   //if mySecondCar current speedIncreaseStep is negative (Deceleration - Slow down)
        	   		}
     	   else if (mySecondCar.getSpeedIncreaseStep() < 0){
-        	   System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: "  +mySecondCar.getCarName() + " <<< : " +mySecondCar.getCurrentSpeed() );
+//        	   System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: "  +mySecondCar.getCarName() + " <<< : " +mySecondCar.getCurrentSpeed() );
+        	   System.out.printf("%3d :: %8s <<< : %3d", mySecondCar.getSpeedIncreaseStep(), mySecondCar.getCarName(), mySecondCar.getCurrentSpeed());
     	   }
        	   //if mySecondCar  speedIncreaseStep speed is zero (Constant speed)		
     	   else{ 
@@ -105,15 +113,19 @@ public class UseMyCar {
     		   	mySecondCar.setSpeedIncreaseStep(gas);
     		   	//Get this speed when the driver punches on the accelerator pedal 
     		   	secondDriver.punchOnAccelorPedal(mySecondCar, mySecondCar.getSpeedIncreaseStep());
-    		   	System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: " +mySecondCar.getCarName() + " +++ : " +mySecondCar.getCurrentSpeed() +"\t\t");
+//    		   	System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: " +mySecondCar.getCarName() + " +++ : " +mySecondCar.getCurrentSpeed() +"\t\t");
+         	   System.out.printf("%3d :: %8s +++ : %3d", mySecondCar.getSpeedIncreaseStep(), mySecondCar.getCarName(), mySecondCar.getCurrentSpeed());
     		   	//if the number of times zeroCounter has passed to zero is multiple of 3
     		   	if(mySecondCar.getZeroCounter() % 3 == 0){
     		   		//prepare even more gas
     		   		moreGas=createInjection(mySecondCar.getZeroCounter(), 0);
     		   		//Automatically increase the speed related to the amount of gas alloted
     		   		mySecondCar.automaticAccelerationIncrease(gas);
-    		   		System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: " +mySecondCar.getCarName() + " *** : " +mySecondCar.getCurrentSpeed() +"\t\t");
+//    		   		System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: " +mySecondCar.getCarName() + " *** : " +mySecondCar.getCurrentSpeed() +"\t\t");
+    	        	System.out.printf("%3d :: %8s *** : %3d", mySecondCar.getSpeedIncreaseStep(), mySecondCar.getCarName(), mySecondCar.getCurrentSpeed());
     		   	}
+    		   	else
+    		   		System.out.printf("%25s", "");
     	   }
        	   
        	   //Display the third car

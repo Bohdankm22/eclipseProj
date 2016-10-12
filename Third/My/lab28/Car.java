@@ -130,9 +130,7 @@ public class Car
      ****************************************************************/
 	//Method that generates a random number between minx10 and maxx10
 	static int createRandomNumber(int max, int min){
-		if (max < min)
-			throw new RuntimeException("max should be less then min");
-		 return new Random().nextInt(10 * min + 10 * max) - 10 * min;         	
+		 return (int)( Math.random() * 10 * (Math.random() > 0.5 ? min : max));         	
 	}
 	
 	//Method to starts the car (initialize the car speed)
@@ -161,7 +159,7 @@ public class Car
     {
     	setSpeedIncreaseStep(createRandomNumber(h, l));
     	// Something is not right here!!!!
-    	setCurrentSpeed(getSpeedIncreaseStep());
+    	setCurrentSpeed(getCurrentSpeed() + getSpeedIncreaseStep());
     }
 	
     //This method accelerates the cars by step of highSpeed (High speed acceleration). It saves highSpeed to currentSpeed and returns currentSpeed
