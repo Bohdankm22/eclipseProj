@@ -3,6 +3,7 @@ package william;
 import javax.swing.JOptionPane;
 
 public class Assigment3 {
+	
 	public static void main(String[] args){
 		int o;
 		o = Integer.parseInt(JOptionPane.showInputDialog("Provide an odd number"));
