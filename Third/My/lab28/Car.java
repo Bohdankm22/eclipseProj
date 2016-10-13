@@ -9,7 +9,7 @@ public class Car
      *                                                               *
      ****************************************************************/
     //Encapsulation Principle: All the attributes are by default private 
-	private String carName; //name of the car
+	protected String carName; //name of the car
 	private int startSpeed; //first speed of the car when it is started
 	private int initialSpeed; //startSpeed speed of a car to be driven by a non-experimented person
     private int currentSpeed; //current speed of the car
