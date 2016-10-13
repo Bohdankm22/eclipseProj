@@ -63,11 +63,13 @@ public class UseMyCar {
 			if (myFirstCar.getSpeedIncreaseStep() > 0){
 //        	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " >>> : " +myFirstCar.getCurrentSpeed() +"\t\t" );
                System.out.printf("%3d :: %8s >>> : %3d", myFirstCar.getSpeedIncreaseStep(), myFirstCar.getCarName(), myFirstCar.getCurrentSpeed());
+//               System.out.printf("%25s", "\t");
 			}
 			//if myFirstCar current speedIncreaseStep is negative (Deceleration - Slow down)
 			else if (myFirstCar.getSpeedIncreaseStep() < 0){
 //        	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " <<< : " +myFirstCar.getCurrentSpeed() +"\t\t");
         	   System.out.printf("%3d :: %8s <<< : %3d", myFirstCar.getSpeedIncreaseStep(), myFirstCar.getCarName(), myFirstCar.getCurrentSpeed());
+//        	   System.out.printf("%25s", "\t");
 			}
 			//if myFirstCar speedIncreaseStep speed is zero (Constant speed)
 			else{ 
@@ -87,21 +89,23 @@ public class UseMyCar {
             	   moreGas=createInjection(myFirstCar.getZeroCounter(), 0);
             	   //Automatically increase the speed related to the amount of gas alloted
             	   myFirstCar.automaticAccelerationIncrease(gas);
-            	   System.out.printf("%3d :: %8s *** : %3d", myFirstCar.getSpeedIncreaseStep(), myFirstCar.getCarName(), myFirstCar.getCurrentSpeed());
+//            	   System.out.printf("%3d :: %8s *** : %3d", myFirstCar.getSpeedIncreaseStep(), myFirstCar.getCarName(), myFirstCar.getCurrentSpeed());
 //            	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " *** : " +myFirstCar.getCurrentSpeed());
                }
-               else
-   		   		System.out.printf("%25s", "");
+//               else
+//   		   		System.out.printf("%25s", "");
     	   }
 			//if mySecondCar speedIncreaseStep is positive (Acceleration)
        	   if (mySecondCar.getSpeedIncreaseStep() > 0){
         	   System.out.printf("%3d :: %8s >>> : %3d", mySecondCar.getSpeedIncreaseStep(), mySecondCar.getCarName(), mySecondCar.getCurrentSpeed());
 //        	   System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: "  +mySecondCar.getCarName() + " >>> : " +mySecondCar.getCurrentSpeed() );
         	   //if mySecondCar current speedIncreaseStep is negative (Deceleration - Slow down)
-       	   		}
+//        	   System.out.printf("%25s", "\t");
+       	   }
     	   else if (mySecondCar.getSpeedIncreaseStep() < 0){
 //        	   System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: "  +mySecondCar.getCarName() + " <<< : " +mySecondCar.getCurrentSpeed() );
         	   System.out.printf("%3d :: %8s <<< : %3d", mySecondCar.getSpeedIncreaseStep(), mySecondCar.getCarName(), mySecondCar.getCurrentSpeed());
+//        	   System.out.printf("%25s", "\t");
     	   }
        	   //if mySecondCar  speedIncreaseStep speed is zero (Constant speed)		
     	   else{ 
@@ -122,10 +126,10 @@ public class UseMyCar {
     		   		//Automatically increase the speed related to the amount of gas alloted
     		   		mySecondCar.automaticAccelerationIncrease(gas);
 //    		   		System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: " +mySecondCar.getCarName() + " *** : " +mySecondCar.getCurrentSpeed() +"\t\t");
-    	        	System.out.printf("%3d :: %8s *** : %3d", mySecondCar.getSpeedIncreaseStep(), mySecondCar.getCarName(), mySecondCar.getCurrentSpeed());
+//    	        	System.out.printf("%3d :: %8s *** : %3d", mySecondCar.getSpeedIncreaseStep(), mySecondCar.getCarName(), mySecondCar.getCurrentSpeed());
     		   	}
-    		   	else
-    		   		System.out.printf("%25s", "");
+//    		   	else
+//    		   		System.out.printf("%25s", "\t");
     	   }
        	   
        	   //Display the third car
