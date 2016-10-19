@@ -22,7 +22,7 @@ public class ISCar extends Car
     //constructor during its creation and the min, max, and factor parameters 
     //to be used to generate a random number
 	public ISCar(String name) {
-		super("toyCar");
+		super(name);
         
 	}
 	
@@ -62,7 +62,7 @@ public class ISCar extends Car
 	
 	//Method that generates a random number between minx10 and maxx10
     int AutomaticCreationRandomNumber(int min, int max, int factor){
-	int myRandomInt = (int)(Math.random() * factor * (Math.random() > 0.5 ? min : max));
+    	int myRandomInt = (int)(Math.random() * factor * (Math.random() > 0.5 ? min : max));
 		return myRandomInt;
 	}
 }    
