@@ -1,39 +1,41 @@
 package lab28;
 
-public class UseMyISCar {
+import java.util.Random;
+
+public class UseMyF1Car {
 	
+	//final static Random gasInject = new Random();
 	static int gas = 0;
 	static int moreGas = 0;
 
+	
 	public static void main(String[] args) {
+
+		boolean wasCrash = false;
 		
-       //Instantiate a car that uses the mother constructor from the car class 
-      // This car should have a name and the min, max, and factor parameters to be 
-      //used to generate a random number
-//		ISCar myFirstCar = new ISCar("Mazda", 1, 5, 4);
+		//Instantiate a car that uses the mother constructor from the car class 
+	      // This car should have a name and the min, max, and factor parameters to be 
+	      //used to generate a random number
+//			ISCar myFirstCar = new ISCar("Mazda", 1, 5, 4);
 		Formula1 myFirstCar = new Formula1("f1", -1, 3, 20);
-		
-	// Instantiate a car that uses the mother constructor from the car class 
-      // This car will have a name, and starts the race with an initial speed 
-      //given by the player as a parameter to the constructor during its creation 
-      //and the min, max, and factor parameters to be used to generate a random 
-      //number	
-//		ISCar mySecondCar = new ISCar("Toyota", 5, -1, 1, 2);
+			
+		// Instantiate a car that uses the mother constructor from the car class 
+	      // This car will have a name, and starts the race with an initial speed 
+	      //given by the player as a parameter to the constructor during its creation 
+	      //and the min, max, and factor parameters to be used to generate a random 
+	      //number	
+//			ISCar mySecondCar = new ISCar("Toyota", 5, -1, 1, 2);
 		Formula1 mySecondCar = new Formula1("Ferrari", 20, -1, 1, 5);
 
-        // Instantiate a third Car which name “toyCar” is given by default, 
-        //and that doesn't move
+	        // Instantiate a third Car which name “toyCar” is given by default, 
+	        //and that doesn't move
 		ISCar myThirdCar = new ISCar();
-		
-//		Formula1 f1 = new Formula1("f1", -1, 3, 20);
-//		
-//		Formula1 ferrary = new Formula1("Ferrari", 20, -1, 1, 5);
 
         //Create the first Driver that will drive the first car
-//		Driver 	
+		Driver firstDriver = new Driver();
 		
-         //Create the second Driver that will drive the second car
-//		[--------------]
+		//Create the second Driver that will drive the second car
+		Driver secondDriver = new Driver();
 
 		String theWinner = "";
 
@@ -54,10 +56,13 @@ public class UseMyISCar {
 		mySecondCar.StartRunning();
 		mySecondCar.setSpeedIncreaseStep(mySecondCar.getCurrentSpeed());
 
-		//Let's race for 60 seconds
+		//Let's race for 30 seconds
 		int i = 1;
 		while (i < 60)
-		{
+		{	
+			if (checkSpeedLimit(myFirstCar) | checkSpeedLimit(mySecondCar) | checkSpeedLimit(myThirdCar)) {
+				break;
+			}
 			//if myFirstCar speedIncreaseStep is positive (Acceleration)
 			if (myFirstCar.getSpeedIncreaseStep() > 0){
         	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " >>> : " +myFirstCar.getCurrentSpeed() +"\t\t" );
@@ -70,26 +75,30 @@ public class UseMyISCar {
 			else{ 
     		   //increment the car zeroCounter counter 	
     		   myFirstCar.setZeroCounter(myFirstCar.getZeroCounter() + 1);
-    		 //prepare gas from the car itself  	
+    		   //prepare gas  	
     		   gas = myFirstCar.AutomaticCreationRandomNumber(-myFirstCar.getMaxFactor(), 5*myFirstCar.getMaxFactor(),20);
     		   //Increase the speed related to the amount of gas alloted
     		   myFirstCar.setSpeedIncreaseStep(gas);
     		   //Get this speed when the driver punches on the accelerator pedal 
-//               firstDriver.punchOnAccelorPedal(myFirstCar, myFirstCar.getSpeedIncreaseStep());
+               firstDriver.punchOnAccelorPedal(myFirstCar, myFirstCar.getSpeedIncreaseStep());
                System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " +++ : " +myFirstCar.getCurrentSpeed() +"\t\t");
                //if the number of times zeroCounter has passed to zero is multiple of 3
                if(myFirstCar.getZeroCounter() % 3 == 0){
-            	   //prepare even more gas from the car itself  
+            	   //prepare even more gas
             	   moreGas=myFirstCar.AutomaticCreationRandomNumber(0, myFirstCar.getZeroCounter()*5*myFirstCar.getMaxFactor(), myFirstCar.getZeroCounter()*10);
             	   //Automatically increase the speed related to the amount of gas alloted
             	   myFirstCar.automaticAccelerationIncrease(moreGas);
             	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " *** : " +myFirstCar.getCurrentSpeed() +"\t\t");
                }
-    	   }
+			}
+			if (checkSpeedLimit(myFirstCar)) {
+				break;
+			}
 			//if myseSondCar speedIncreaseStep is positive (Acceleration)
 			if (mySecondCar.getSpeedIncreaseStep() > 0){
         	   System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: " +mySecondCar.getCarName() + " >>> : " +mySecondCar.getCurrentSpeed() +"\t\t" );
 			}
+			
 			//if mySecondCar current speedIncreaseStep is negative (Deceleration - Slow down)
 			else if (mySecondCar.getSpeedIncreaseStep() < 0){
         	   System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: " +mySecondCar.getCarName() + " <<< : " +mySecondCar.getCurrentSpeed() +"\t\t");
@@ -98,22 +107,25 @@ public class UseMyISCar {
 			else{ 
     		   //increment the car zeroCounter counter 	
     		   mySecondCar.setZeroCounter(mySecondCar.getZeroCounter() + 1);
-    		   //prepare gas from the car itself  	
+    		   //prepare gas  	
     		   gas = mySecondCar.AutomaticCreationRandomNumber(-mySecondCar.getMaxFactor(), 5*mySecondCar.getMaxFactor(),20);
     		   //Increase the speed related to the amount of gas alloted
     		   mySecondCar.setSpeedIncreaseStep(gas);
     		   //Get this speed when the driver punches on the accelerator pedal 
-//               secondDriver.punchOnAccelorPedal(mySecondCar, mySecondCar.getSpeedIncreaseStep());
+               secondDriver.punchOnAccelorPedal(mySecondCar, mySecondCar.getSpeedIncreaseStep());
                System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: " +mySecondCar.getCarName() + " +++ : " +mySecondCar.getCurrentSpeed() +"\t\t");
                //if the number of times zeroCounter has passed to zero is multiple of 3
                if(mySecondCar.getZeroCounter() % 3 == 0){
-            	   //prepare even more gas from the car itself  
+            	   //prepare even more gas
             	   moreGas=mySecondCar.AutomaticCreationRandomNumber(0, mySecondCar.getZeroCounter()*5*mySecondCar.getMaxFactor(), mySecondCar.getZeroCounter()*10);
             	   //Automatically increase the speed related to the amount of gas alloted
             	   mySecondCar.automaticAccelerationIncrease(moreGas);
             	   System.out.print(mySecondCar.getSpeedIncreaseStep() +" :: " +mySecondCar.getCarName() + " *** : " +mySecondCar.getCurrentSpeed() +"\t\t");
                }
-    	   }
+			}
+			if (checkSpeedLimit(mySecondCar)) {
+				break;
+			}
        	   //Display the third car
           System.out.println("\t\t " + myThirdCar.getCarName() + " === : " + myThirdCar.getCurrentSpeed());
           
@@ -124,32 +136,40 @@ public class UseMyISCar {
       	  try
     	  { 
     		 Thread.sleep(1000);   
-    	  	}
+    	  }
       	  catch(Exception e)
-      	{
-      		System.out.println("there is an error");
-        	  	}
-            i++;       
-  		}  
-  		System.out.println();
-  		System.out.println();
-  		
-  	    if (myFirstCar.getCurrentSpeed() == mySecondCar.getCurrentSpeed())
-  	    	{
-  	    	   System.out.println("\t\t" + "There is no winner for this Race ");
-  	    	}
-  	    else if (myFirstCar.getCurrentSpeed() > mySecondCar.getCurrentSpeed())
-  	       {
-  	          theWinner = myFirstCar.getCarName();
-  	          System.out.println("\t\t" + "The winner of this Race is :  " + theWinner);
-  	       }
-  	    else
-  	       {
-  	          theWinner = mySecondCar.getCarName();	
-  	          System.out.println("\t\t" + "The winner of this Race is :  " + theWinner);
-         }
+      	  {
+    		System.out.println("there is an error");
+      	  }
+          i++;       
+		}  
+		System.out.println();
+		System.out.println();
+		
+	    if (myFirstCar.getCurrentSpeed() == mySecondCar.getCurrentSpeed())
+	    	{
+	    	   System.out.println("\t\t" + "There is no winner for this Race ");
+	    	}
+	    else if (myFirstCar.getCurrentSpeed() > mySecondCar.getCurrentSpeed())
+	       {
+	          theWinner = myFirstCar.getCarName();
+	          System.out.println("\t\t" + "The winner of this Race is :  " + theWinner);
+	       }
+	    else
+	       {
+	          theWinner = mySecondCar.getCarName();	
+	          System.out.println("\t\t" + "The winner of this Race is :  " + theWinner);
+       }
+       System.out.println();
+       System.out.println();
+    }
 
-         System.out.println();
-         System.out.println();
-      }
-  }
+
+	private static boolean checkSpeedLimit(ISCar car) {
+		if (car.getCurrentSpeed() > 500) {
+			System.out.println(String.format("CATASTROPHE - THE %s> CAR CRASHED! ! ! !", car.getCarName()));
+			return true;
+		}
+		return false;
+	}
+}

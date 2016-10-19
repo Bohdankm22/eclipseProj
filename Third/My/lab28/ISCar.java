@@ -11,19 +11,18 @@ public class ISCar extends Car
       //the car class. This car should have a name and the min, max, and factor   
       //parameters to be used to generate a random number
 	public ISCar(String name, int minFactor, int maxFactor, int speedFactor) {
-		super(name);
-		this.minFactor = minFactor;
-		this.maxFactor = maxFactor;
-		this.speedFactor = speedFactor;
+		this(name, 0, minFactor, maxFactor, speedFactor);
 	}
 	//Constructor that uses the mother constructor from the car class 
     // This constructor will create a new car with a name, and starts the race 
     //with an initial speed given by the player as a parameter to the 
     //constructor during its creation and the min, max, and factor parameters 
     //to be used to generate a random number
-	public ISCar(String name) {
-		super(name);
-        
+	public ISCar(String name, int is, int minFactor, int maxFactor, int speedFactor) {
+		super(name, is);
+		this.minFactor = minFactor;
+		this.maxFactor = maxFactor;
+		this.speedFactor = speedFactor;
 	}
 	
 	public ISCar() {
