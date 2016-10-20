@@ -17,7 +17,7 @@ public class UseMyF1Car {
 	      // This car should have a name and the min, max, and factor parameters to be 
 	      //used to generate a random number
 //			ISCar myFirstCar = new ISCar("Mazda", 1, 5, 4);
-		Formula1 myFirstCar = new Formula1("f1", -1, 3, 20);
+		Formula1Version2 myFirstCar = new Formula1Version2("f1", -1, 3, 20);
 			
 		// Instantiate a car that uses the mother constructor from the car class 
 	      // This car will have a name, and starts the race with an initial speed 
@@ -25,7 +25,7 @@ public class UseMyF1Car {
 	      //and the min, max, and factor parameters to be used to generate a random 
 	      //number	
 //			ISCar mySecondCar = new ISCar("Toyota", 5, -1, 1, 2);
-		Formula1 mySecondCar = new Formula1("Ferrari", 20, -1, 1, 5);
+		Formula1Version2 mySecondCar = new Formula1Version2("Ferrari", 20, -1, 1, 5);
 
 	        // Instantiate a third Car which name “toyCar” is given by default, 
 	        //and that doesn't move
@@ -60,9 +60,6 @@ public class UseMyF1Car {
 		int i = 1;
 		while (i < 60)
 		{	
-			if (checkSpeedLimit(myFirstCar) | checkSpeedLimit(mySecondCar) | checkSpeedLimit(myThirdCar)) {
-				break;
-			}
 			//if myFirstCar speedIncreaseStep is positive (Acceleration)
 			if (myFirstCar.getSpeedIncreaseStep() > 0){
         	   System.out.print(myFirstCar.getSpeedIncreaseStep() +" :: " +myFirstCar.getCarName() + " >>> : " +myFirstCar.getCurrentSpeed() +"\t\t" );
@@ -92,7 +89,7 @@ public class UseMyF1Car {
                }
 			}
 			if (checkSpeedLimit(myFirstCar)) {
-				break;
+				return;
 			}
 			//if myseSondCar speedIncreaseStep is positive (Acceleration)
 			if (mySecondCar.getSpeedIncreaseStep() > 0){
@@ -124,7 +121,7 @@ public class UseMyF1Car {
                }
 			}
 			if (checkSpeedLimit(mySecondCar)) {
-				break;
+				return;
 			}
        	   //Display the third car
           System.out.println("\t\t " + myThirdCar.getCarName() + " === : " + myThirdCar.getCurrentSpeed());
@@ -165,9 +162,10 @@ public class UseMyF1Car {
     }
 
 
-	private static boolean checkSpeedLimit(ISCar car) {
+	private static boolean checkSpeedLimit(Formula1Version2 car) {
 		if (car.getCurrentSpeed() > 500) {
 			System.out.println(String.format("CATASTROPHE - THE %s> CAR CRASHED! ! ! !", car.getCarName()));
+			car.ElectronicCrashDetection();
 			return true;
 		}
 		return false;

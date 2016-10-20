@@ -9,6 +9,9 @@ public class Formula1 extends ISCar {
 	public Formula1(String name, int i, int j, int k) {
 		super(name, i, j, k);
 	}
+	protected Formula1() {
+		
+	}
 	
 	
 
