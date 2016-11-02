@@ -81,6 +81,7 @@ public class Huffman {
 		
 		Arrays.sort(Frequency);
 		System.out.println(Arrays.toString(Frequency)); //for test
+		//finished on this part
 		
 		//5. End
 	}
