@@ -27,22 +27,22 @@ public class ProjectMT {
 		System.arraycopy(frequency, 0, sortedFrequency, 0, frequency.length);
 		System.arraycopy(LETTER, 0, sortedLetter, 0, sortedLetter.length);
 
-		// System.out.println(Arrays.toString(OCCURRENCE));
-		// System.out.println(Arrays.toString(frequency));
+		 System.out.println(Arrays.toString(OCCURRENCE));
+		 System.out.println(Arrays.toString(frequency));
 		sort(sortedFrequency, sortedLetter);
-		// System.out.println("Sorted frequency: " +
-		// Arrays.toString(sortedFrequency));
+		 System.out.println("Sorted frequency: " +
+		 Arrays.toString(sortedFrequency));
 
-		// System.out.println("Sorted letters: " +
-		// Arrays.toString(sortedLetter));
-		// buildCodingTable(sortedLetter);
+		 System.out.println("Sorted letters: " +
+		 Arrays.toString(sortedLetter));
+		 buildCodingTable(sortedLetter);
 
 		int[] text = getCipheredText(FILE_NAME, sortedLetter);
 		displayCipherText(text, true);
 
-		// System.out.println("______________________________________________________");
-		// System.out.println("Comprassion rate = " +
-		// calculateComprassionRate(OCCURRENCE));
+		 System.out.println("______________________________________________________");
+		 System.out.println("Comprassion rate = " +
+		 calculateComprassionRate(OCCURRENCE));
 
 		decoded(text, sortedLetter);
 
