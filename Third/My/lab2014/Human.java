@@ -17,4 +17,10 @@ public class Human extends AnimalCommonBehaviour{
 		System.out.println("War");
 	}
 
+	@Override
+	public void balancing() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

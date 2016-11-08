@@ -18,4 +18,10 @@ public class Monkey extends AnimalCommonBehaviour{
 		System.out.println("From three to three");
 	}
 
+	@Override
+	public void fight() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
