@@ -21,7 +21,7 @@ public class Huffman {
 		byte[] ASCII = str_letter.getBytes("US-ASCII");
 		
 		//Step 3. Occurrence array		
-		File file1 = new File("https:\\github.com\\Bohdankm22\\eclipseProj\\tree\\master\\Third\\My\\Harpreet\\midterm\\IronHeel.txt");
+		File file1 = new File("D:\\Harpreet\\JavaProjectNew\\NewProject\\NewProject\\src\\MidTerm\\IronHeel.txt");
 		BufferedReader in = new BufferedReader(new FileReader(file1));
 
 		int nextChar;
@@ -116,13 +116,13 @@ public class Huffman {
     	break;
     	//Step 7.2 Arrays Display
     case 2: System.out.println("Arrays: \n");
-    		System.out.printf("%s%7s%12s","Letters",  "ASCII", "Occurrence","Frequency");
+    		System.out.printf("%s%7s%15s%15s","Letters",  "ASCII", "Occurrence","Frequency");
     		System.out.println("\n");
     		for(int i=0;i<Letter.length;i++){
-    			System.out.printf("%s%12s%7s",Letter[i] , ASCII[i] ,  Occurrence[i] ,  Frequency[i] );
+    			System.out.printf("%s%12s%12s%17s",Letter[i] , ASCII[i] ,  Occurrence[i] ,  Frequency[i] );
     			System.out.println("\n");
     		}
-    		System.out.printf("%5s%25s%15s", "Ordered Letters","Ordered_Frequency", "Huffman_Code");
+    		System.out.printf("%5s%20s%15s", "Ordered Letters","Ordered_Frequency", "Huffman_Code");
     		System.out.println("\n");
     		for(int i=0;i<ordered_Frequency.length;i++){
     			System.out.printf("%s%25s%15s", ordered_Letters[i],ordered_Frequency[i] ,  Huffman_Code[i][1]);
