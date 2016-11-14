@@ -4,16 +4,16 @@ import javax.swing.*;
 
 import java.awt.*;
 
-public class Canvas extends JFrame {
+public class Assgnm6Canv extends JFrame {
 	
 	
 
-	public Canvas() {
+	public Assgnm6Canv() {
 		
 		super("Canvas to draw");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(500, 500);
-		FigurePane f = new FigurePane();
+		setSize(790, 810);
+		Assignm6Waves f = new Assignm6Waves();
 		getContentPane().add(f);
 		
 	}
