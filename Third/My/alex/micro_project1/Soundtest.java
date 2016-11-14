@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.io.File;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -34,7 +35,7 @@ public class Soundtest extends JFrame {
 	private void showProgressBar(long micro) {
 		JPanel p = new JPanel();
 		p.setLayout(new FlowLayout());
-		progressBar = new JProgressBar(0, (int)micro / 1000); //
+		progressBar = new JProgressBar(0, (int)micro); //
 		progressBar.setValue(0);
 		progressBar.setStringPainted(true);
 		textArea = new JTextArea();
@@ -47,33 +48,36 @@ public class Soundtest extends JFrame {
 	}
 	
 	public void startPlaying() {
-		playMedia(soundFile);
+		openClip(soundFile);
 		showProgressBar(clip.getMicrosecondLength());
+		playMedia(soundFile);
 		iterate(clip.getMicrosecondLength());
 	}
 
 	private void iterate(long durInMicro){
 		int num = 0;
-		int durInMili = Math.round(durInMicro / 1000);
-		while (num <= durInMili){
+		while (num <= durInMicro){
 			progressBar.setValue(num);
-			textArea.setText("Duration is " + durInMicro + " microseconds \nCurrent fragment is " + num * 1000);
+			textArea.setText("Duration is " + durInMicro + " microseconds \nCurrent fragment is " + num);
 			try{
-				Thread.sleep(1);
+				Thread.sleep(100);
 			} catch (InterruptedException e) {}
-			num += 1;
+			num += 100 * 1000;
 		}
 		
 	}
 	
-	private void playMedia(File Sound) {
-        try {
-        	clip = AudioSystem.getClip();
-        	clip.open(AudioSystem.getAudioInputStream(Sound));
-        	clip.start();
-        } catch(Exception e) {	
-        	System.out.println(e);
-      }
+	private void openClip(File sound) {
+		try {
+			clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(sound));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void playMedia(File sound) {
+		clip.start();
 	}
 }
 

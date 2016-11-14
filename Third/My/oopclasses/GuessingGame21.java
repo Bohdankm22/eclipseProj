@@ -13,9 +13,9 @@ public class GuessingGame21 {
 		guessingGame21.game();
 	}
 
-	private void game() {
+	public void game() {
 		int number;
-		while (true) {
+//		while (true) {
 			while (true) {
 				number = Integer.parseInt(JOptionPane.showInputDialog("Please enter your guess between 0 and 100: "));
 				String word = number > randomNumber ? "greater" : "less";
@@ -25,7 +25,6 @@ public class GuessingGame21 {
 				} else if (userScore <= 0) {
 					JOptionPane.showMessageDialog(null, String.format("Sorry, Game is over!"), "Game", JOptionPane.INFORMATION_MESSAGE);
 					break;
-				
 				} else {
 					userScore -= 10;
 					JOptionPane.showMessageDialog(null, String.format("The number you entered is %s than win number!\n"
@@ -33,14 +32,14 @@ public class GuessingGame21 {
 				
 				}
 			}
-			String answer = JOptionPane.showInputDialog("Do you want to play again? Yes(Y/y) No(N/n)");
-			if (answer.toLowerCase().equals("y")) {
-				randomNumber = new Random().nextInt(101);
-				userScore = 100;
-			} else {
-				System.exit(0);
-			}
-		}
+//			String answer = JOptionPane.showInputDialog("Do you want to play again? Yes(Y/y) No(N/n)");
+//			if (answer.toLowerCase().equals("y")) {
+//				randomNumber = new Random().nextInt(101);
+//				userScore = 100;
+//			} else {
+//				System.exit(0);
+//			}
+//		}
 	}
 
 }
