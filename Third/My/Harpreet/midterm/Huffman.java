@@ -21,7 +21,7 @@ public class Huffman {
 		byte[] ASCII = str_letter.getBytes("US-ASCII");
 		
 		//Step 3. Occurrence array		
-		File file1 = new File("D:\\Harpreet\\JavaProjectNew\\NewProject\\NewProject\\src\\MidTerm\\IronHeel.txt");
+		File file1 = new File("/Users/bohdansharipov/Documents/Java/repositories/Third/My/bohdan/IronHeel.txt");
 		BufferedReader in = new BufferedReader(new FileReader(file1));
 
 		int nextChar;

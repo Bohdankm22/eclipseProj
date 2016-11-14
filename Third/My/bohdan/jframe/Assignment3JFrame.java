@@ -32,8 +32,10 @@ public class Assignment3JFrame extends JFrame {
 		setLocation(locWidth, locHeight);
 		
 		JLabel label = new JLabel("Software Engineering");
+		label.setBackground(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
 		label.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, height / 2));
-		label.setForeground(Color.RED);
+		label.setForeground(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
+		
 		getContentPane().add(label);
 	}
 }
