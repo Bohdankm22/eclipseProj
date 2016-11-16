@@ -7,7 +7,7 @@ public class Assignment3Main {
 		for (int i = 0; i < 50; i++) {
 			Assignment3JFrame jf = new Assignment3JFrame();
 			jf.setVisible(true);
-			sleepSec(1);
+			sleepSec(5);
 			jf.setVisible(false);
 			sleepSec(1);
 		}

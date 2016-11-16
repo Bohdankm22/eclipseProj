@@ -1,5 +1,6 @@
 package bohdan;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,37 +16,39 @@ public class ProjectMT {
 			'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 	private static final byte[] ASCII = { ',', ':', ';' };
 	private static int CHARACTERS_AMOUNT;
+	private static int ALL_CHAR_AMOUNT;
 
 	private static int[] OCCURRENCE = new int[LETTER.length];
 	private static final String FILE_NAME = "/Users/bohdansharipov/Documents/Java/repositories/Third/My/bohdan/IronHeel.txt";
 
 	public static void main(String[] args) {
-		readFileByBytesAndCalculateIntoOccurrence(FILE_NAME);
+		File file = new File("IronHeel.txt");
+		readFileByBytesAndCalculateIntoOccurrence(file.getAbsoluteFile().toString());
 		double[] frequency = calculateFrequancy(OCCURRENCE);
 		double[] sortedFrequency = new double[frequency.length];
 		char[] sortedLetter = new char[LETTER.length];
 		System.arraycopy(frequency, 0, sortedFrequency, 0, frequency.length);
 		System.arraycopy(LETTER, 0, sortedLetter, 0, sortedLetter.length);
-
-		 System.out.println(Arrays.toString(OCCURRENCE));
-		 System.out.println(Arrays.toString(frequency));
 		sort(sortedFrequency, sortedLetter);
-		 System.out.println("Sorted frequency: " +
-		 Arrays.toString(sortedFrequency));
 
-		 System.out.println("Sorted letters: " +
-		 Arrays.toString(sortedLetter));
-		 buildCodingTable(sortedLetter);
-
-		int[] text = getCipheredText(FILE_NAME, sortedLetter);
+		int[] text = getCipheredText(file.getAbsoluteFile().toString(), sortedLetter);
 		displayCipherText(text, true);
+		System.out.println("Letter: " + Arrays.toString(LETTER));
+		System.out.println();
+		buildCodingTable(sortedLetter);
+		System.out.println();
+		System.out.println(Arrays.toString(OCCURRENCE));
+		 System.out.println(Arrays.toString(frequency));
+		 
+		 System.out.println("Sorted frequency: " + Arrays.toString(sortedFrequency));
+
+		 System.out.println("Sorted letters: " + Arrays.toString(sortedLetter));
 
 		 System.out.println("______________________________________________________");
 		 System.out.println("Comprassion rate = " +
 		 calculateComprassionRate(OCCURRENCE));
 
-		decoded(text, sortedLetter);
-
+		 decoded(text, sortedLetter);
 	}
 
 	private static void decoded(int[] text, char[] sortedLet) {
@@ -78,23 +81,24 @@ public class ProjectMT {
 	}
 
 	private static void displayCipherText(int[] text, boolean isEncode) {
-		int modula = text.length % 40;
+		int numberSymbInLine = 100;
+		int modula = text.length % numberSymbInLine;
 		int i = 0;
-		for (; i < (text.length / 40); i++) {
-			for (int j = 0; j < 40; j++) {
+		for (; i < (text.length / numberSymbInLine); i++) {
+			for (int j = 0; j < numberSymbInLine; j++) {
 				if (isEncode) {
-					System.out.print(text[i * 40 + j] + " ");
+					System.out.print(Integer.toBinaryString(text[i * numberSymbInLine + j]));
 				} else {
-					System.out.print(Character.toUpperCase((char)text[i * 40 + j]));
+					System.out.print(Character.toUpperCase((char)text[i * numberSymbInLine + j]));
 				}				
 			}
 			System.out.println();
 		}
 		for (int j = 0; j < modula; j++) {
 			if (isEncode) {
-				System.out.print(text[i * 40 + j] + " ");
+				System.out.print(Integer.toBinaryString(text[i * numberSymbInLine + j]));
 			} else {
-				System.out.print(Character.toUpperCase((char)text[i * 40 + j]));
+				System.out.print(Character.toUpperCase((char)text[i * numberSymbInLine + j]));
 			}
 		}
 	}
@@ -104,10 +108,14 @@ public class ProjectMT {
 		try (FileInputStream in = new FileInputStream(fileName)) {
 			int c;
 			int posit = 0;
-			label1: while ((c = in.read()) != -1) {
-				for (int j = 0; j < ASCII.length; j++) {
-					if (c == ASCII[j]) {
-						res[posit] = '\n';
+			label1: 
+			while ((c = in.read()) != -1) {
+				if (c == 10 || c == 13)
+					continue;
+				for (int j = 0; j < ASCII.length; j++) {	
+					if ((byte)c == (byte)ASCII[j]) {
+						//System.err.println("adkjfalskdgjklasdkjgklsdajg");
+						res[posit] = 32;
 						posit++;
 						continue label1;
 					}
@@ -141,13 +149,14 @@ public class ProjectMT {
 	}
 
 	private static double calculateComprassionRate(int[] occur) {
-		double res = 0;
 		int[] memory = fillCipherMemory(occur.length);
-		long expCons = calculateTotal(occur) * 8;
+//		long expCons = calculateTotal(occur)  * 8 ;
+		long expCons = ALL_CHAR_AMOUNT * 8 ;
 		long cons = 0;
 		for (int i = 0; i < occur.length; i++) {
 			cons += occur[i] * memory[i];
 		}
+		cons = cons + (ALL_CHAR_AMOUNT - calculateTotal(occur)) * 8;
 		System.out.println("Cons: " + cons + " and exp: " + expCons);
 		return 100 - ((double) cons / expCons * 100);
 	}
@@ -207,11 +216,17 @@ public class ProjectMT {
 		try (FileInputStream in = new FileInputStream(fileName)) {
 			int c;
 			int length = 0;
+			int dif_char_am = 0;
 			while ((c = in.read()) != -1) {
+				if (c == 10 || c == 13) {
+					dif_char_am++;
+					continue;
+				}
 				addCharacterIntoAccurance(c);
 				length++;
 			}
 			CHARACTERS_AMOUNT = length;
+			ALL_CHAR_AMOUNT = length + dif_char_am;
 		} catch (IOException e) {
 			System.err.println("ERROR READING FILE!");
 			e.printStackTrace();
