@@ -17,8 +17,12 @@ public class CasinoFrame extends JFrame implements ActionListener{
 	JPanel bottomPanel = new JPanel();
 	JTextField txtUserName = new JTextField(10);
 	JTextField txtPassword = new JTextField(10);
+    JPanel subPanel1 = new JPanel();
+    JPanel subPanel2 = new JPanel();
+    JButton btnLogin = new JButton("Login");
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	ProjDataAccess data = new ProjDataAccess();
+	static boolean isLogedIn = false;
 	
 	public CasinoFrame(){
 		//setDefaultLookAndFeelDecorated(true);
@@ -98,8 +102,6 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		JPanel p = new JPanel();
 		p.setSize((int)screenSize.getWidth(), 200);
 		BoxLayout layout = new BoxLayout(p, BoxLayout.PAGE_AXIS);
-		JPanel subPanel1 = new JPanel();
-		JPanel subPanel2 = new JPanel();
 	
 		JLabel lbl = new JLabel("UserName:");
 		
@@ -110,7 +112,8 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		subPanel2.add(lbl2);
 		subPanel2.add(txtPassword);
 		
-		JButton btnLogin = new JButton("Login");
+
+        btnLogin.addActionListener(this);
 		btnLogin.setName("btnLogin");
 		p.add(subPanel1);
 		p.add(subPanel2);
@@ -188,7 +191,9 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		Object source = evt.getSource();
 		JButton btn = (JButton)source;
 		if(btn.getName().equals("btnGuessing")){
-			GuessingGame21 guessingGame21 = new GuessingGame21();
+		    if (isLogedIn) {
+                GuessingGame21 guessingGame21 = new GuessingGame21();
+            }
 		}else if(btn.getName().equals("btnMusic")){
 			Soundtest sound = new Soundtest();
 			sound.startPlaying();
@@ -198,7 +203,13 @@ public class CasinoFrame extends JFrame implements ActionListener{
 			Pong Pong = new Pong();
 		}else if(btn.getName().equals("btnLogin")){
 			//txtUserName
-			boolean loggedIn = ProjDataAccess.checkUserCredentials(txtUserName.getText(), txtPassword.getText());
+            String userName = txtUserName.getText();
+			isLogedIn = ProjDataAccess.checkUserCredentials(userName, txtPassword.getText());
+			if (isLogedIn) {
+                subPanel1.setVisible(false);
+                subPanel2.setVisible(false);
+                btnLogin.setText("Welcome, " + userName);
+            }
 		}else if(btn.getName().equals("btnRegister")){
 			RegisterUser reg = new RegisterUser();
 		}
