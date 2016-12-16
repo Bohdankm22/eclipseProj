@@ -113,6 +113,16 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		subPanel1.add(lbl);
 		subPanel1.add(txtUserName);
 		JLabel lbl2 = new JLabel("Password:");
+		int j=0;
+		JButton btnArray[]=new JButton[100];
+		for(int i=0; i<10; i++){
+			j= i + 1; 
+			btnArray[i] = new JButton("" + j);
+			btnArray[i].addActionListener(this);
+			btnArray[i].setName(j + "");
+			subPanel2.add(btnArray[i]);
+			
+		}
 		
 		subPanel2.add(lbl2);
 		subPanel2.add(txtPassword);
@@ -234,6 +244,10 @@ public class CasinoFrame extends JFrame implements ActionListener{
             }
 		}else if(btn.getName().equals("btnRegister")){
 			RegisterUser reg = new RegisterUser();
+		}else{
+			
+			int number = Integer.parseInt(btn.getText());
+			txtPassword.setText(txtPassword.getText() + number );
 		}
 	}
 }
