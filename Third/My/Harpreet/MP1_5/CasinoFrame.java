@@ -8,13 +8,18 @@ import javax.swing.*;
 import finalassigment.Pong;
 import Harpreet.mp1_3.GuessingGame21;
 import alex.micro_project1.Soundtest;
+import bohdan.Databases.ProjDataAccess;
 
 public class CasinoFrame extends JFrame implements ActionListener{
 	JPanel mainPanel = new JPanel();
 	JPanel topPanel = new JPanel();
 	JPanel centerPanel = new JPanel();
 	JPanel bottomPanel = new JPanel();
+	JTextField txtUserName = new JTextField(10);
+	JTextField txtPassword = new JTextField(10);
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	ProjDataAccess data = new ProjDataAccess();
+	
 	public CasinoFrame(){
 		//setDefaultLookAndFeelDecorated(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -55,7 +60,7 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		JPanel p1 = new JPanel();
 		p1.setSize(200,200);
 		p1.setLocation(0, 0);
-		ImageIcon icon = new ImageIcon("C:\\Users\\Keshav\\git\\eclipseProj2\\Third\\My\\Harpreet\\MP1_5\\CasinoImage.png");
+		ImageIcon icon = new ImageIcon("Recourc/CasinoImage.png");
 		JLabel lbl = new JLabel(icon);		
 		p1.add(lbl);
 		
@@ -66,7 +71,7 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		p.setSize(200,200);
 		BorderLayout layout = new BorderLayout();
 		p.setLayout(layout);
-		ImageIcon icon = new ImageIcon("C:\\Users\\Keshav\\git\\eclipseProj2\\Third\\My\\Harpreet\\MP1_5\\centennialLogo.jpg");
+		ImageIcon icon = new ImageIcon("Recourc/centennialLogo.jpg");
 		JLabel lbl = new JLabel(icon);
 		lbl.setSize(100,100);
 		
@@ -97,32 +102,35 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		JPanel subPanel2 = new JPanel();
 	
 		JLabel lbl = new JLabel("UserName:");
-		JTextField txt = new JTextField();
-		subPanel1.add(lbl);
-		subPanel1.add(txt);
-		JLabel lbl2 = new JLabel("Password:");
-		JTextField txt2 = new JTextField();
-		subPanel2.add(lbl2);
-		subPanel2.add(txt2);
 		
-		JButton btn = new JButton("Login");
+		subPanel1.add(lbl);
+		subPanel1.add(txtUserName);
+		JLabel lbl2 = new JLabel("Password:");
+		
+		subPanel2.add(lbl2);
+		subPanel2.add(txtPassword);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setName("btnLogin");
 		p.add(subPanel1);
 		p.add(subPanel2);
-		p.add(btn);
+		p.add(btnLogin);
 		
 		centerPanel.add(p);
 	}
 	
 	public void buildRegister(){
 		JPanel p = new JPanel();
-		JButton btn = new JButton("User Registration \n New User? Click here to Register.");
-		p.add(btn);
+		JButton btnRegister = new JButton("User Registration \n New User? Click here to Register.");
+		btnRegister.addActionListener(this);
+		btnRegister.setName("btnRegister");
+		p.add(btnRegister);
 		centerPanel.add(p);
 	}
 	
 	public void buildGuessingGame(){
 		JPanel p = new JPanel();
-		ImageIcon icon = new ImageIcon("C:\\Users\\Keshav\\git\\eclipseProj2\\Third\\My\\Harpreet\\MP1_5\\guessingGame.png");
+		ImageIcon icon = new ImageIcon("Recourc/guessingGame.png");
 		
 		JButton btnGuessing = new JButton(icon);
 		btnGuessing.addActionListener(this);
@@ -136,7 +144,7 @@ public class CasinoFrame extends JFrame implements ActionListener{
 	
 	public void buildMusic(){
 		JPanel p = new JPanel();
-		ImageIcon icon = new ImageIcon("C:\\Users\\Keshav\\git\\eclipseProj2\\Third\\My\\Harpreet\\MP1_5\\playmusicImage.png");
+		ImageIcon icon = new ImageIcon("Recourc/playmusicImage.png");
 		JButton btnMusic = new JButton(icon);
 		btnMusic.setSize(100,100);
 		btnMusic.setName("btnMusic");
@@ -148,7 +156,7 @@ public class CasinoFrame extends JFrame implements ActionListener{
 	
 	public void buildScores(){
 		JPanel p = new JPanel();
-		ImageIcon icon = new ImageIcon("C:\\Users\\Keshav\\git\\eclipseProj2\\Third\\My\\Harpreet\\MP1_5\\scoresImage.png");
+		ImageIcon icon = new ImageIcon("Recourc/scoresImage.png");
 		JButton btnScore = new JButton(icon);
 		btnScore.setName("btnScore");
 		btnScore.addActionListener(this);
@@ -159,9 +167,8 @@ public class CasinoFrame extends JFrame implements ActionListener{
 	
 	public void buildPong(){
 		JPanel p = new JPanel();
-		//ImageIcon icon = new ImageIcon("C:\\Users\\Keshav\\git\\eclipseProj2\\Third\\My\\Harpreet\\MP1_5\\guessingGame.png");
-		
-		JButton btnPong = new JButton();
+		ImageIcon icon = new ImageIcon("Recourc/pong.png");
+		JButton btnPong = new JButton(icon);
 		btnPong.addActionListener(this);
 		btnPong.setSize(100, 100);
 		btnPong.setName("btnPong");
@@ -180,15 +187,20 @@ public class CasinoFrame extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent evt){
 		Object source = evt.getSource();
 		JButton btn = (JButton)source;
-		if(btn.getName() == "btnGuessing"){			
+		if(btn.getName().equals("btnGuessing")){
 			GuessingGame21 guessingGame21 = new GuessingGame21();
-		}else if(btn.getName() == "btnMusic"){
+		}else if(btn.getName().equals("btnMusic")){
 			Soundtest sound = new Soundtest();
 			sound.startPlaying();
-		}else if(btn.getName() == "btnScore"){
+		}else if(btn.getName().equals("btnScore")){
 			Scores scores = new Scores();
 		}else if(btn.getName() == "btnPong"){
 			Pong Pong = new Pong();
+		}else if(btn.getName().equals("btnLogin")){
+			//txtUserName
+			boolean loggedIn = ProjDataAccess.checkUserCredentials(txtUserName.getText(), txtPassword.getText());
+		}else if(btn.getName().equals("btnRegister")){
+			RegisterUser reg = new RegisterUser();
 		}
 	}
 }
