@@ -89,8 +89,9 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		p1.setLayout(boxLayout);
 		JLabel lbl3 = new JLabel("Developed By: ");
 		JLabel lbl4 = new JLabel("Harpreet Kaur 300910377");
-		JLabel lbl5 = new JLabel("Bohdan Sharipov");
+		JLabel lbl5 = new JLabel("Bohdan Sharipov 300908588");
 		JLabel lbl6 = new JLabel("Guillermo Peralta 300923022");
+		JLabel lbl7 = new JLabel("Alexey Ulyanov 300913498");
 		p1.add(lbl3);
 		p1.add(lbl4);
 		p1.add(lbl5);
@@ -202,7 +203,10 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		}else if(btn.getName().equals("btnScore")){
 			Scores scores = new Scores();
 		}else if(btn.getName() == "btnPong"){
-			Pong Pong = new Pong();
+			if (isLogedIn) {
+				Pong Pong = new Pong();
+				//gfdgfd
+			}
 		}else if(btn.getName().equals("btnLogin")){
 			//txtUserName
             String userName = txtUserName.getText();
