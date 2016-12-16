@@ -65,12 +65,16 @@ public class GuessingGame21 extends JFrame implements ActionListener{
 			//frame.setVisible(false);
 		} else if (userScore <= 0) {
 			drawNext = 0;
+			hangMan.removeAll();
+			//hangMan.paint(getGraphics());
 			hangMan.repaint();
 			
 			//frame.setVisible(false);
 		} else {
 			userScore -= 10;
 			drawNext = userScore/10;
+			hangMan.removeAll();
+			//hangMan.paint(getGraphics());
 			hangMan.repaint();
 			/*JOptionPane.showMessageDialog(null, String.format("The number you entered is %s than win number!\n"
 					+ "Numbere of remaining chances is %d\nYour related score is %d", word, userScore / 10, userScore), "Game", JOptionPane.INFORMATION_MESSAGE);
