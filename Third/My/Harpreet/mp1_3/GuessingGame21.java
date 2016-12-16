@@ -72,7 +72,7 @@ public class GuessingGame21 extends JFrame implements ActionListener{
 			drawNext = 0;
 			hangMan.removeAll();
 			//hangMan.paint(getGraphics());
-			hangMan.repaint();
+			hangMan.repaintCOmp();
 			
 			//frame.setVisible(false);
 		} else {
@@ -81,7 +81,7 @@ public class GuessingGame21 extends JFrame implements ActionListener{
 			drawNext = ProjDataAccess.getUserScore(userName)/10;
 			hangMan.removeAll();
 			//hangMan.paint(getGraphics());
-			hangMan.repaint();
+			hangMan.repaintCOmp();
 			/*JOptionPane.showMessageDialog(null, String.format("The number you entered is %s than win number!\n"
 					+ "Numbere of remaining chances is %d\nYour related score is %d", word, userScore / 10, userScore), "Game", JOptionPane.INFORMATION_MESSAGE);
 			*/	

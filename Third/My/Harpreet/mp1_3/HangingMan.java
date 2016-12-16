@@ -5,14 +5,17 @@ import java.awt.*;
 import javax.swing.*;
 
 public class HangingMan extends JPanel{
-
+	Graphics2D comp2D;
 	public void paintComponent(Graphics comp){
-		Graphics2D comp2D = (Graphics2D)comp;	
+		comp2D = (Graphics2D)comp;
+		
 		comp2D.drawRect(70, 280, 120, 50);
 		switch(GuessingGame21.drawNext){
 		case 9 : drawFace(comp2D);
+				
 				break;
 		case 8 : drawEyes(comp2D);
+		
 				break;
 		case 7 : drawNose(comp2D);
 				break;
@@ -30,6 +33,9 @@ public class HangingMan extends JPanel{
 				break;
 		case 0 : drawRope(comp2D);
 		}
+	}
+	public void repaintCOmp(){
+		paintComponent(getGraphics());
 	}
 	public void drawFace(Graphics2D comp2D){
 		//comp2D.setColor(Color.white);
