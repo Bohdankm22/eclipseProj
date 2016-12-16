@@ -8,13 +8,18 @@ import javax.swing.*;
 
 import Harpreet.mp1_3.GuessingGame21;
 import alex.micro_project1.Soundtest;
+import bohdan.Databases.ProjDataAccess;
 
 public class CasinoFrame extends JFrame implements ActionListener{
 	JPanel mainPanel = new JPanel();
 	JPanel topPanel = new JPanel();
 	JPanel centerPanel = new JPanel();
 	JPanel bottomPanel = new JPanel();
+	JTextField txtUserName = new JTextField(10);
+	JTextField txtPassword = new JTextField(10);
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	ProjDataAccess data = new ProjDataAccess();
+	
 	public CasinoFrame(){
 		//setDefaultLookAndFeelDecorated(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -95,26 +100,29 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		JPanel subPanel2 = new JPanel();
 	
 		JLabel lbl = new JLabel("UserName:");
-		JTextField txt = new JTextField();
-		subPanel1.add(lbl);
-		subPanel1.add(txt);
-		JLabel lbl2 = new JLabel("Password:");
-		JTextField txt2 = new JTextField();
-		subPanel2.add(lbl2);
-		subPanel2.add(txt2);
 		
-		JButton btn = new JButton("Login");
+		subPanel1.add(lbl);
+		subPanel1.add(txtUserName);
+		JLabel lbl2 = new JLabel("Password:");
+		
+		subPanel2.add(lbl2);
+		subPanel2.add(txtPassword);
+		
+		JButton btnLogin = new JButton("Login");
+		btnLogin.setName("btnLogin");
 		p.add(subPanel1);
 		p.add(subPanel2);
-		p.add(btn);
+		p.add(btnLogin);
 		
 		centerPanel.add(p);
 	}
 	
 	public void buildRegister(){
 		JPanel p = new JPanel();
-		JButton btn = new JButton("User Registration \n New User? Click here to Register.");
-		p.add(btn);
+		JButton btnRegister = new JButton("User Registration \n New User? Click here to Register.");
+		btnRegister.addActionListener(this);
+		btnRegister.setName("btnRegister");
+		p.add(btnRegister);
 		centerPanel.add(p);
 	}
 	
@@ -171,6 +179,11 @@ public class CasinoFrame extends JFrame implements ActionListener{
 			sound.startPlaying();
 		}else if(btn.getName() == "btnScore"){
 			Scores scores = new Scores();
+		}else if(btn.getName() == "btnLogin"){
+			//txtUserName
+			boolean loggedIn = data.checkUserCredentials(txtUserName.getText(), txtPassword.getText());
+		}else if(btn.getName() == "btnRegister"){
+			RegisterUser reg = new RegisterUser();
 		}
 	}
 }
