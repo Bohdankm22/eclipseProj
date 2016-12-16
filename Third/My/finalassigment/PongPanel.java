@@ -22,7 +22,7 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
         ball = new Ball(game);
         player1 = new Racket(game, KeyEvent.VK_UP, KeyEvent.VK_DOWN, game.getWidth() - 36);
         player2 = new Racket(game, KeyEvent.VK_W, KeyEvent.VK_S, 20);
-        Timer timer = new Timer(5, this);
+        Timer timer = new Timer(4, this);
         timer.start();
         addKeyListener(this);
         setFocusable(true);

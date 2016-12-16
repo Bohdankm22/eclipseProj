@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Racket {
-    private static final int WIDTH = 10, HEIGHT = 60;
+    private static final int WIDTH = 10, HEIGHT = 100;
     private Pong game;
     private int up, down;
     private int x;

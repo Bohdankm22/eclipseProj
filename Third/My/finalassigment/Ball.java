@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 public class Ball {
     private static final int WIDTH = 30, HEIGHT = 30;
     private Pong game;
-    private int x, y, xa = 2, ya = 2;
+    private int x, y, xa = 1, ya = 1;
 
     public Ball(Pong game) {
         this.game = game;
@@ -31,10 +31,12 @@ public class Ball {
         }
         else if (y < 0 || y > game.getHeight() - HEIGHT - 29)
             ya = -ya;
-        if (game.getPanel().getScore(1) == 10)
+        if (game.getPanel().getScore(1) == 10){
             JOptionPane.showMessageDialog(null, "Player 1 wins", "Pong", JOptionPane.PLAIN_MESSAGE);
-        else if (game.getPanel().getScore(2) == 10)
+            System.exit(0);}
+        else if (game.getPanel().getScore(2) == 10){
             JOptionPane.showMessageDialog(null, "Player 2 wins", "Pong", JOptionPane.PLAIN_MESSAGE);
+            System.exit(0);}
         checkCollision();
     }
 
