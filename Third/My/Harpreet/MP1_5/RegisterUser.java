@@ -17,7 +17,6 @@ public class RegisterUser extends JFrame implements ActionListener{
 	JTextField txtPass = new JTextField(10);
 	public RegisterUser(){
 
-		
 		JPanel panel = new JPanel();
 		setSize(500,500);
 		JLabel lbl = new JLabel("Enter UserName: ");
@@ -34,7 +33,9 @@ public class RegisterUser extends JFrame implements ActionListener{
 		setContentPane(panel);
 		setVisible(true);
 	}
+
 	public void actionPerformed(ActionEvent evt){
-		data.registerNewUser(txtName.getText(), txtPass.getText());
+		ProjDataAccess.registerNewUser(txtName.getText(), txtPass.getText());
+		this.setVisible(false);
 	}
 }
