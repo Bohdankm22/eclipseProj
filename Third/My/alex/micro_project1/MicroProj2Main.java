@@ -7,7 +7,7 @@ public class MicroProj2Main {
 
 	public static void main(String[] args) {
 			Soundtest sound = new Soundtest();
-			
+
 			GuessingGame21 guessingGame21 = new GuessingGame21();
 			Thread music = new Thread(new Runnable() {
 				@Override
