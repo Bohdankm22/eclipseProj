@@ -84,11 +84,13 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		BoxLayout boxLayout = new BoxLayout(p1, BoxLayout.PAGE_AXIS);
 		p1.setLayout(boxLayout);
 		JLabel lbl3 = new JLabel("Developed By: ");
-		JLabel lbl4 = new JLabel("Harpreet Kaur");
+		JLabel lbl4 = new JLabel("Harpreet Kaur 300910377");
 		JLabel lbl5 = new JLabel("Bohdan Sharipov");
+		JLabel lbl6 = new JLabel("Guillermo Peralta 300923022");
 		p1.add(lbl3);
 		p1.add(lbl4);
 		p1.add(lbl5);
+		p1.add(lbl6);
 		
 		p.add(p1,  BorderLayout.CENTER);
 		topPanel.add(p);
