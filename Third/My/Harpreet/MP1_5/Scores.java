@@ -6,13 +6,13 @@ import bohdan.Databases.ProjDataAccess;
 
 public class Scores extends JFrame{
 	
-	public Scores(){
+	public Scores(String usName){
 		ProjDataAccess data = new ProjDataAccess();
 		int score = data.getUserScore("adsfas");
 		JPanel panel = new JPanel();
 		setSize(500,500);
-		JLabel lbl = new JLabel("Your Score is: ");
-		JLabel lbl2 = new JLabel("" + score);
+		JLabel lbl = new JLabel("Your Score is: " );
+		JLabel lbl2 = new JLabel("" + ProjDataAccess.getUserScore(usName));
 		panel.add(lbl);
 		panel.add(lbl2);
 		setContentPane(panel);

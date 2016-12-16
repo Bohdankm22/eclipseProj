@@ -5,7 +5,7 @@ public class MicroProj2Main {
 
 	public static void main(String[] args) {
 					
-			GuessingGame21 guessingGame21 = new GuessingGame21();
+			//GuessingGame21 guessingGame21 = new GuessingGame21();
 			//Soundtest sound = new Soundtest();
 			//sound.startPlaying();
 	}

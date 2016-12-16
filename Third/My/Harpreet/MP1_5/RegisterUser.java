@@ -36,6 +36,7 @@ public class RegisterUser extends JFrame implements ActionListener{
 
 	public void actionPerformed(ActionEvent evt){
 		ProjDataAccess.registerNewUser(txtName.getText(), txtPass.getText());
+		ProjDataAccess.updateScore(txtName.getText(), 100);
 		this.setVisible(false);
 	}
 }

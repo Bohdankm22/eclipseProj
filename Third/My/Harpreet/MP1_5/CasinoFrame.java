@@ -8,6 +8,7 @@ import javax.swing.*;
 import finalassigment.Pong;
 import Harpreet.mp1_3.GuessingGame21;
 import alex.micro_project1.Soundtest;
+import alex.micro_project1.*;
 import bohdan.Databases.ProjDataAccess;
 
 public class CasinoFrame extends JFrame implements ActionListener{
@@ -23,6 +24,7 @@ public class CasinoFrame extends JFrame implements ActionListener{
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	ProjDataAccess data = new ProjDataAccess();
 	static boolean isLogedIn = false;
+	String usName;
 	
 	public CasinoFrame(){
 		//setDefaultLookAndFeelDecorated(true);
@@ -195,13 +197,26 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		JButton btn = (JButton)source;
 		if(btn.getName().equals("btnGuessing")){
 		    if (isLogedIn) {
-                GuessingGame21 guessingGame21 = new GuessingGame21();
+                GuessingGame21 guessingGame21 = new GuessingGame21(usName);
             }
 		}else if(btn.getName().equals("btnMusic")){
 			Soundtest sound = new Soundtest();
-			sound.startPlaying();
+
+			
+			Thread music = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					while(true) {
+						sound.startPlaying();
+					}
+				}	
+			});
+			music.setDaemon(true);
+			music.start();
 		}else if(btn.getName().equals("btnScore")){
-			Scores scores = new Scores();
+			if (isLogedIn) {
+				Scores scores = new Scores(usName);
+			}
 		}else if(btn.getName() == "btnPong"){
 			if (isLogedIn) {
 				Pong Pong = new Pong();
@@ -212,6 +227,7 @@ public class CasinoFrame extends JFrame implements ActionListener{
             String userName = txtUserName.getText();
 			isLogedIn = ProjDataAccess.checkUserCredentials(userName, txtPassword.getText());
 			if (isLogedIn) {
+				usName = userName;
                 subPanel1.setVisible(false);
                 subPanel2.setVisible(false);
                 btnLogin.setText("Welcome, " + userName);

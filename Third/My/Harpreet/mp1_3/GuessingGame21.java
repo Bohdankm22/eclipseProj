@@ -9,19 +9,24 @@ import java.util.Random;
 
 import javax.swing.*;
 
+import bohdan.Databases.ProjDataAccess;
+
 
 public class GuessingGame21 extends JFrame implements ActionListener{
 	private int randomNumber = new Random().nextInt(101);
-	private int userScore = 100;
+	private int userScore;
 	JPanel p = new JPanel();
 	JFrame frame = new JFrame();
 	JFrame frame2 = new JFrame();
 	public static int drawNext = 10;;
 	HangingMan hangMan = new HangingMan();
 	JButton btnArray[]=new JButton[100];
-	public GuessingGame21(){
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	String userName;
+	
+	public GuessingGame21(String usName){
+		userName=usName;
+		userScore=ProjDataAccess.getUserScore(userName);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridLayout fl = new GridLayout(10, 10,0,0);
 		p.setLayout(fl);
 		frame.setContentPane(p);
@@ -61,9 +66,9 @@ public class GuessingGame21 extends JFrame implements ActionListener{
 			btn.setBackground(Color.green);
 		}
 		if (number == randomNumber) {
-			JOptionPane.showMessageDialog(null, String.format("Congradulations!\nYour score is %d", userScore), "Game", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, String.format("Congradulations!\nYour score is %d", ProjDataAccess.getUserScore(userName)), "Game", JOptionPane.INFORMATION_MESSAGE);
 			//frame.setVisible(false);
-		} else if (userScore <= 0) {
+		} else if (ProjDataAccess.getUserScore(userName) <= 0) {
 			drawNext = 0;
 			hangMan.removeAll();
 			//hangMan.paint(getGraphics());
@@ -72,7 +77,8 @@ public class GuessingGame21 extends JFrame implements ActionListener{
 			//frame.setVisible(false);
 		} else {
 			userScore -= 10;
-			drawNext = userScore/10;
+			ProjDataAccess.updateScore(userName, ProjDataAccess.getUserScore(userName) -10);
+			drawNext = ProjDataAccess.getUserScore(userName)/10;
 			hangMan.removeAll();
 			//hangMan.paint(getGraphics());
 			hangMan.repaint();
