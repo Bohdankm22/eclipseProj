@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
+import finalassigment.Pong;
 import Harpreet.mp1_3.GuessingGame21;
 import alex.micro_project1.Soundtest;
 
@@ -47,7 +47,9 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		buildGuessingGame();
 		buildMusic();
 		buildScores();
+		buildPong();
 		buildAll();
+		
 	}
 	public void buildImage(){
 		JPanel p1 = new JPanel();
@@ -154,6 +156,20 @@ public class CasinoFrame extends JFrame implements ActionListener{
 		
 		bottomPanel.add(p);
 	}
+	
+	public void buildPong(){
+		JPanel p = new JPanel();
+		//ImageIcon icon = new ImageIcon("C:\\Users\\Keshav\\git\\eclipseProj2\\Third\\My\\Harpreet\\MP1_5\\guessingGame.png");
+		
+		JButton btnPong = new JButton();
+		btnPong.addActionListener(this);
+		btnPong.setSize(100, 100);
+		btnPong.setName("btnPong");
+		p.add(btnPong);
+		
+		bottomPanel.add(p);
+	}
+	
 	public void buildAll(){
 		mainPanel.add(topPanel);
 		mainPanel.add(centerPanel);
@@ -171,6 +187,8 @@ public class CasinoFrame extends JFrame implements ActionListener{
 			sound.startPlaying();
 		}else if(btn.getName() == "btnScore"){
 			Scores scores = new Scores();
+		}else if(btn.getName() == "btnPong"){
+			Pong Pong = new Pong();
 		}
 	}
 }
